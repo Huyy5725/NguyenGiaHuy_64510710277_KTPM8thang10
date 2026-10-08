@@ -91,4 +91,8 @@ class LoginTest extends BaseTest {
     void tc11PasswordWithUnicode() {
         assertInvalidCredentials("utc.invalid.user", "mật-khẩu-不正");
     }
+    @Test
+    void tc12WhitespaceCredentials() {
+        assertInvalidCredentials("   ", "   ");
+    }
 }
