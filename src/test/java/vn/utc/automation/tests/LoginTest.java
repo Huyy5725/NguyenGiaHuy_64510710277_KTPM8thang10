@@ -83,4 +83,8 @@ class LoginTest extends BaseTest {
     void tc9PasswordWithSpecialCharacters() {
         assertInvalidCredentials("utc.invalid.user", "!@#$%^&*()_+-=[]{}");
     }
+    @Test
+    void tc10VeryLongPassword() {
+        assertInvalidCredentials("utc.invalid.user", "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+    }
 }
