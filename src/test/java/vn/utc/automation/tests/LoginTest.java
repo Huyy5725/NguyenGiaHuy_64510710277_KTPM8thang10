@@ -49,4 +49,14 @@ class LoginTest extends BaseTest {
         assertEquals(BLANK_PASSWORD_MESSAGE,
                 loginPage.waitForBlankPasswordValidationMessage());
     }
+    private void assertInvalidCredentials(String username, String password) {
+        LoginPage loginPage = new LoginPage(driver).open();
+        loginPage.submitCredentials(username, password);
+        assertEquals("Tài khoản hoặc mật khẩu không đúng.",
+                loginPage.waitForInvalidCredentialsMessage());
+    }
+    @Test
+    void tc3InvalidUsernameAndPassword() {
+        assertInvalidCredentials("utc.invalid.user", "invalid-password");
+    }
 }

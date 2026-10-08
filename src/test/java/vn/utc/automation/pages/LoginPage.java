@@ -62,4 +62,11 @@ public class LoginPage extends BasePage {
                     exception);
         }
     }
+    public String waitForInvalidCredentialsMessage() {
+        final String expected = "Tài khoản hoặc mật khẩu không đúng.";
+        return until(webDriver -> {
+            String bodyText = webDriver.findElement(PAGE_BODY).getText();
+            return bodyText.contains(expected) ? expected : null;
+        });
+    }
 }
