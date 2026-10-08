@@ -75,4 +75,8 @@ class LoginTest extends BaseTest {
     void tc7UsernameWithSpecialCharacters() {
         assertInvalidCredentials("utc.invalid+test@example.com", "invalid-password");
     }
+    @Test
+    void tc8VeryLongUsername() {
+        assertInvalidCredentials("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu", "invalid-password");
+    }
 }
