@@ -59,4 +59,8 @@ class LoginTest extends BaseTest {
     void tc3InvalidUsernameAndPassword() {
         assertInvalidCredentials("utc.invalid.user", "invalid-password");
     }
+    @Test
+    void tc4UsernameWithLeadingWhitespace() {
+        assertInvalidCredentials(" utc.invalid.user", "invalid-password");
+    }
 }
