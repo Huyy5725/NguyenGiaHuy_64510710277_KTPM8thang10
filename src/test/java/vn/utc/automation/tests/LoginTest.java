@@ -12,7 +12,7 @@ import vn.utc.automation.base.BaseTest;
 import vn.utc.automation.pages.LoginPage;
 
 class LoginTest extends BaseTest {
-    private static final String BLANK_PASSWORD_MESSAGE = "Bạn chưa nhập mật khẩu";
+    private static final String BLANK_PASSWORD_MESSAGE = "B\u1ea1n ch\u01b0a nh\u1eadp m\u1eadt kh\u1ea9u";
 
     @BeforeEach
     void startBrowserWhenRequired(TestInfo testInfo) {
@@ -52,7 +52,7 @@ class LoginTest extends BaseTest {
     private void assertInvalidCredentials(String username, String password) {
         LoginPage loginPage = new LoginPage(driver).open();
         loginPage.submitCredentials(username, password);
-        assertEquals("Tài khoản hoặc mật khẩu không đúng.",
+        assertEquals("T\u00e0i kho\u1ea3n ho\u1eb7c m\u1eadt kh\u1ea9u kh\u00f4ng \u0111\u00fang.",
                 loginPage.waitForInvalidCredentialsMessage());
     }
     @Test

@@ -63,7 +63,7 @@ public class LoginPage extends BasePage {
         }
     }
     public String waitForInvalidCredentialsMessage() {
-        final String expected = "Tài khoản hoặc mật khẩu không đúng.";
+        final String expected = "T\u00e0i kho\u1ea3n ho\u1eb7c m\u1eadt kh\u1ea9u kh\u00f4ng \u0111\u00fang.";
         return until(webDriver -> {
             String bodyText = webDriver.findElement(PAGE_BODY).getText();
             return bodyText.contains(expected) ? expected : null;
