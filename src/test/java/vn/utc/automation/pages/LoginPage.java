@@ -3,6 +3,7 @@ package vn.utc.automation.pages;
 import java.net.URI;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,4 +46,20 @@ public class LoginPage extends BasePage {
         });
     }
 
+    public String waitForBlankPasswordValidationMessage() {
+        try {
+            return until(webDriver -> {
+                String bodyText = webDriver.findElement(PAGE_BODY).getText();
+                return bodyText.contains("Bạn chưa nhập mật khẩu")
+                        ? "Bạn chưa nhập mật khẩu"
+                        : null;
+            });
+        } catch (TimeoutException exception) {
+            String actualBody = driver.findElement(PAGE_BODY).getText();
+            throw new AssertionError(
+                    "Expected blank-password validation was not displayed. Actual page text: "
+                            + actualBody,
+                    exception);
+        }
+    }
 }

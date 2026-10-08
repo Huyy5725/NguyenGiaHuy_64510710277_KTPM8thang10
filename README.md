@@ -28,3 +28,11 @@ $env:UTC_PASS="your_password"
 ```
 
 Credentials are read from environment variables and must not be committed. If either variable is missing, JUnit reports TC1 as skipped (BLOCKED), not passed. TC1 checks that a successful login navigates away from `/Login`.
+
+## TC2: Blank password validation
+
+| ID | Scenario | Expected result |
+|---|---|---|
+| TC2 | Submit a non-empty test username with a blank password | Page displays `Bạn chưa nhập mật khẩu`. |
+
+The current public login DOM uses `name="username"`, `name="userpwd"`, and `input.submit_login`. The password input has no HTML `required` attribute, so TC2 submits the blank password and checks the observed application validation message `Bạn chưa nhập mật khẩu`.

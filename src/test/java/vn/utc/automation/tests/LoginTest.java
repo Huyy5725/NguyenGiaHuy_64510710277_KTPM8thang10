@@ -1,6 +1,7 @@
 package vn.utc.automation.tests;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,8 @@ import vn.utc.automation.base.BaseTest;
 import vn.utc.automation.pages.LoginPage;
 
 class LoginTest extends BaseTest {
+    private static final String BLANK_PASSWORD_MESSAGE = "Bạn chưa nhập mật khẩu";
+
     @BeforeEach
     void startBrowserWhenRequired(TestInfo testInfo) {
         if (testInfo.getTestMethod().map(method ->
@@ -36,5 +39,14 @@ class LoginTest extends BaseTest {
         String password = System.getenv("UTC_PASS");
         return username != null && !username.isBlank()
                 && password != null && !password.isBlank();
+    }
+
+    @Test
+    void tc2BlankPasswordShowsValidationMessage() {
+        LoginPage loginPage = new LoginPage(driver).open();
+        loginPage.submitCredentials("blank.password.validation.test", "");
+
+        assertEquals(BLANK_PASSWORD_MESSAGE,
+                loginPage.waitForBlankPasswordValidationMessage());
     }
 }
