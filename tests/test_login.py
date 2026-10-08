@@ -19,3 +19,17 @@ def test_tc01_invalid_username_shows_login_error(driver):
         login_page.wait_for_login_error()
         == LoginPage.INVALID_CREDENTIALS_MESSAGE
     )
+
+
+def test_tc02_invalid_password_shows_login_error(driver):
+    username = os.getenv("UTC_USER")
+    if not username:
+        pytest.fail("Set UTC_USER before running the login failure tests.")
+
+    login_page = LoginPage(driver).open()
+    login_page.login(username, INVALID_PASSWORD)
+
+    assert (
+        login_page.wait_for_login_error()
+        == LoginPage.INVALID_CREDENTIALS_MESSAGE
+    )
